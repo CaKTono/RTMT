@@ -1,0 +1,164 @@
+nohup: ignoring input
+Loading faster-whisper model: large-v3 on device: cuda with compute_type: float16
+Faster-whisper model 'large-v3' loaded successfully.
+Launching Speech-to-Text and Translation Gradio app...
+Running on local URL:  http://127.0.0.1:7860
+Running on public URL: https://d3d70eea5cd09bc612.gradio.live
+
+This share link expires in 72 hours. For free permanent hosting and GPU upgrades, run `gradio deploy` from Terminal to deploy to Spaces (https://huggingface.co/spaces)
+Transcribing with faster-whisper: /tmp/gradio/7435dad396b26c37d5fe63c9f4ac7944b9ec8e1d2822afb7e9455e195de594e9/audio.wav
+Detected language: en with confidence: 0.65
+Transcription: Hello, my name is Alvin.
+Transcribing with faster-whisper: /tmp/gradio/46de0f394bc529813ee0e4fbad4a2866fcecef645da2f3bce2986149f3fc24fd/audio.wav
+Detected language: en with confidence: 0.96
+Transcription: This works on mobile phone.
+Loading translation model: Helsinki-NLP/opus-mt-en-zh...
+/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/transformers/models/marian/tokenization_marian.py:177: UserWarning: Recommended: pip install sacremoses.
+  warnings.warn("Recommended: pip install sacremoses.")
+Device set to use cuda:0
+Translation model loaded.
+Translated 'This works on mobile phone.' (en) to '这在手机上有效' (zh)
+Transcribing with faster-whisper: /tmp/gradio/0a5381ee72576d885d19f9e7cf4a7bb5b2029b66816704eed5f96e85e0b885f7/audio.wav
+Detected language: id with confidence: 0.31
+Transcription: Kan puji lah dia
+Loading translation model: Helsinki-NLP/opus-mt-id-en...
+Device set to use cuda:0
+Translation model loaded.
+Translated 'Kan puji lah dia' (id) to 'Praise him.' (en)
+Transcribing with faster-whisper: /tmp/gradio/bb2d0c7d26cebac7e09e3ebba661e48841ab6f9266e4a53c5e74a41945ce2cd5/audio.wav
+Detected language: en with confidence: 0.89
+Transcription: How great is my Lord.
+Transcribing with faster-whisper: /tmp/gradio/d5a2d96a63771e4ffb8679ad75b5cf14adda6b6d97bd4cdd75af04a0c50d2978/audio.wav
+Detected language: en with confidence: 0.50
+Transcription: Hi, my name is Matt Baker, Dr. Matt Baker.
+Loading translation model: Helsinki-NLP/opus-mt-en-ja...
+Error loading/using translation model Helsinki-NLP/opus-mt-en-ja: Helsinki-NLP/opus-mt-en-ja is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+Transcribing with faster-whisper: /tmp/gradio/53332ff467ec617f90517c7976c08d9cdcabe63751880994024f653813a2259d/audio.wav
+Detected language: id with confidence: 0.74
+Transcription: Halo, selamat pagi Harusnya Ini bisa mengenali Mengenali suara saya
+Using cached translation model: Helsinki-NLP/opus-mt-id-en
+Translated 'Halo, selamat pagi Harusnya Ini bisa mengenali Mengenali suara saya' (id) to 'Hello, good morning. This should recognize my voice.' (en)
+Transcribing with faster-whisper: /tmp/gradio/5bfa63357945f0a20972cb5e26e3c3a625bd6e4373eb9dff08451d33570edd63/audio.wav
+Detected language: ru with confidence: 0.49
+Transcription: Привет, как дела?
+Loading translation model: Helsinki-NLP/opus-mt-ru-en...
+Device set to use cuda:0
+Translation model loaded.
+Translated 'Привет, как дела?' (ru) to 'Hey, how's it going?' (en)
+Transcribing with faster-whisper: /tmp/gradio/bd6c6843a4bf2540406c5c4c77dc7b4740bb4c557dbbc0abf2eef1ad67f9c8b2/audio.wav
+Detected language: id with confidence: 0.97
+Transcription: bisa nambah-nambah lagi apa ya nambahkan maksudnya record lagi nambah sini ya jadi udah pas gini iya oh man save dulu aja you save and then nanti bisa diedit post Oh ya pakai
+Using cached translation model: Helsinki-NLP/opus-mt-id-en
+Translated 'bisa nambah-nambah lagi apa ya nambahkan maksudnya record lagi nambah sini ya jadi udah pas gini iya oh man save dulu aja you save and then nanti bisa diedit post Oh ya pakai' (id) to 'fontcolor=" # FFFF00"canothermores fontcolor=" # FFFF00"what'smore fontcolor=" # FFFF00"what'smore fontcolor=" # FFFF00"what'smore fontcolor=" # FFFF00"recordagain fontcolor=" # FFFF00"yes fontcolor=" # FFFF00"yes fontcolor=" # FFFF00"yes fontcolor=" # FFFF00"yes fontcolor=" # FFFF00"ohman savefirst fontcolor=" # FFFF00"you save fontcolor=" # FFFF00"andthenthenit later fontcolor=" # FFFF00"Ohyes fontcolor=" # FFFF00"yes' (en)
+Transcribing with faster-whisper: /tmp/gradio/c297bcaf0d8678fc8b57d00feb5acccc252660e194debad7fc19f498587d2eab/audio.wav
+Detected language: id with confidence: 0.98
+Transcription: Buat gitu Pak, buatkan jadwalnya Pak Ansiri Aduh, waktu Guru Mandarinnya kayak gitu, kenapa? Karena kuliahnya itu guru Mandarin SD Oh
+Using cached translation model: Helsinki-NLP/opus-mt-id-en
+Translated 'Buat gitu Pak, buatkan jadwalnya Pak Ansiri Aduh, waktu Guru Mandarinnya kayak gitu, kenapa? Karena kuliahnya itu guru Mandarin SD Oh' (id) to 'Why don't you make a schedule for Mr. Ansiri?' (en)
+Transcribing with faster-whisper: /tmp/gradio/7e2d62d18de0c8f5cb4413ceb266382ef002893c21514e8a3e06042e509bb273/audio.wav
+Detected language: id with confidence: 0.96
+Transcription: Jujur aku ngeblank gak tau mau ngomong apa weh Tapi ya gitu lah disuruh cobain Yaudah aku coba aja Tapi aku juga gak tau Soalnya pikiran juga lagi kemana-mana Gak tau Bingung harus bagaimana Otak bener-bener sekarang lagi bingung
+Transcribing with faster-whisper: /tmp/gradio/52bca61871f7a648e84aba86a3e1ddcd32698adef6dc7ee9a0f5612cc7641246/audio.wav
+Detected language: id with confidence: 0.98
+Transcription: bersyukur malam ini bisa ngobrol dengan Bapak Alvin cerita banyak walaupun ujung-ujungnya ditembak sama dia ketawa lagi ngobrol sama Alvin ya gak tau ya gimana dia tau caranya juga ya bingung otak tiba-tiba ngeblank otak tiba-tiba bingung harus bagaimana tapi ya tetap bersyukur belajar juga hari ini dari obrolan ini ya perlu tenang hati lah dan jaga hati juga tetap fokus kepada Tuhan bahwa Tuhan kalau menyediakan orang sepadan aku mau persiapkan diri saja dan ya kayaknya untuk besok juga udah serah kepada Tuhan juga dan kedepannya belajar untuk perasaan itu tidak hanya dikip sendiri tapi walaupun Tuhan tahu tapi ada wangkusnya juga ya menyatakan bahwa kepada Tuhan juga perasaan-perasaan tersebut sekian terima kasih
+Loading translation model: Helsinki-NLP/opus-mt-id-zh...
+Error loading/using translation model Helsinki-NLP/opus-mt-id-zh: Helsinki-NLP/opus-mt-id-zh is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+Transcribing with faster-whisper: /tmp/gradio/e0625b62160d6301fff07c60d92cd8ee1832a7b88b6a84963bd257e16434e5ea/audio.wav
+Detected language: en with confidence: 0.96
+Transcription: Select your desired translation target.
+ERROR:    Exception in ASGI application
+Traceback (most recent call last):
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/uvicorn/protocols/http/h11_impl.py", line 403, in run_asgi
+    result = await app(  # type: ignore[func-returns-value]
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/uvicorn/middleware/proxy_headers.py", line 60, in __call__
+    return await self.app(scope, receive, send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/fastapi/applications.py", line 1054, in __call__
+    await super().__call__(scope, receive, send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/applications.py", line 112, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/middleware/errors.py", line 187, in __call__
+    raise exc
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/middleware/errors.py", line 165, in __call__
+    await self.app(scope, receive, _send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/gradio/route_utils.py", line 767, in __call__
+    await self.simple_response(scope, receive, send, request_headers=headers)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/gradio/route_utils.py", line 783, in simple_response
+    await self.app(scope, receive, send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/middleware/exceptions.py", line 62, in __call__
+    await wrap_app_handling_exceptions(self.app, conn)(scope, receive, send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/routing.py", line 714, in __call__
+    await self.middleware_stack(scope, receive, send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/routing.py", line 734, in app
+    await route.handle(scope, receive, send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/routing.py", line 288, in handle
+    await self.app(scope, receive, send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/routing.py", line 76, in app
+    await wrap_app_handling_exceptions(app, request)(scope, receive, send)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/_exception_handler.py", line 53, in wrapped_app
+    raise exc
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/_exception_handler.py", line 42, in wrapped_app
+    await app(scope, receive, sender)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/routing.py", line 73, in app
+    response = await f(request)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/fastapi/routing.py", line 301, in app
+    raw_response = await run_endpoint_function(
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/fastapi/routing.py", line 212, in run_endpoint_function
+    return await dependant.call(**values)
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/gradio/routes.py", line 1169, in upload_file
+    form = await multipart_parser.parse()
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/gradio/route_utils.py", line 649, in parse
+    async for chunk in self.stream:
+  File "/home/zhouzhencheng/miniconda3/envs/rt-mt/lib/python3.9/site-packages/starlette/requests.py", line 235, in stream
+    raise ClientDisconnect()
+starlette.requests.ClientDisconnect
+Transcribing with faster-whisper: /tmp/gradio/e0966a003e5162df53efc1a3817db3cfae5828f646da89b44eaf2c7ed8360e2d/audio.wav
+Detected language: en with confidence: 0.98
+Transcription: Select your desired target translation language.
+Transcribing with faster-whisper: /tmp/gradio/e0966a003e5162df53efc1a3817db3cfae5828f646da89b44eaf2c7ed8360e2d/audio.wav
+Detected language: en with confidence: 0.98
+Transcription: Select your desired target translation language.
+Using cached translation model: Helsinki-NLP/opus-mt-en-zh
+Translated 'Select your desired target translation language.' (en) to '选择您想要的目标翻译语言 。' (zh)
+Transcribing with faster-whisper: /tmp/gradio/77810f0ce04e76aa0e926734ec8075024d975498ce598332f5c7a3e4779cb5e1/audio.wav
+Detected language: id with confidence: 0.94
+Transcription: Hari ini saya ke gereja
+Loading translation model: Helsinki-NLP/opus-mt-id-zh...
+Error loading/using translation model Helsinki-NLP/opus-mt-id-zh: Helsinki-NLP/opus-mt-id-zh is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+Transcribing with faster-whisper: /tmp/gradio/92fc362ea3257374c48ae5cedfe2df738541e01bfe11626a56f68125719b7803/audio.wav
+Detected language: id with confidence: 0.94
+Transcription: biasanya orang pakai buah apa kan? buah-buah keren jadi lu mau ada checkpoint jangan topik lalu pasalnya topik radio terus kalau lu mau topik kalau kamu main face kamu pake
+Using cached translation model: Helsinki-NLP/opus-mt-id-en
+Translated 'biasanya orang pakai buah apa kan? buah-buah keren jadi lu mau ada checkpoint jangan topik lalu pasalnya topik radio terus kalau lu mau topik kalau kamu main face kamu pake' (id) to 'What kind of fruit do people usually wear? Fruits are cool. So you want a checkpoint.' (en)
+Transcribing with faster-whisper: /tmp/gradio/0438c5c67d09ba17b289dfd39d765c5c948046a541f94a4bc37682827c600049/audio.wav
+Detected language: id with confidence: 0.90
+Transcription: 
+Transcribing with faster-whisper: /tmp/gradio/6fcfa918febd35dab34807011a01d1b0a7e826792bc875620f651f6d2f5fe17e/audio.wav
+Detected language: id with confidence: 0.96
+Transcription: Hai yang jauh gue ntar malam pulang nih teman-teman
+Using cached translation model: Helsinki-NLP/opus-mt-id-en
+Translated 'Hai yang jauh gue ntar malam pulang nih teman-teman' (id) to 'Hi. I'll be home by nightfall, guys.' (en)
+Transcribing with faster-whisper: /tmp/gradio/169b98e28ce0e7e1639b24b084d7336bd5899793e494a0750dee28944b525d91/audio.wav
+Detected language: nn with confidence: 0.75
+Transcription: Hello everyone, welcome to my channel. Today I'm going to show you how to make a simple and delicious
+Loading translation model: Helsinki-NLP/opus-mt-nn-en...
+Error loading/using translation model Helsinki-NLP/opus-mt-nn-en: Helsinki-NLP/opus-mt-nn-en is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+Attempting to load Helsinki-NLP/opus-mt-nn-en...
+Could not translate nn to en: Helsinki-NLP/opus-mt-nn-en is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+Transcribing with faster-whisper: /tmp/gradio/db4ad28696a104f4378ce360dad88e67b5f3ec97d74b1238f09a8b71a874b036/audio.wav
+Detected language: nn with confidence: 0.66
+Transcription: Hello friends Today we will make a very delicious and delicious cake with a very simple recipe Please subscribe to the channel and press the bell to receive all new new videos Thank you for watching See you in the next video Bye Bye
+Loading translation model: Helsinki-NLP/opus-mt-nn-en...
+Error loading/using translation model Helsinki-NLP/opus-mt-nn-en: Helsinki-NLP/opus-mt-nn-en is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
+Attempting to load Helsinki-NLP/opus-mt-nn-en...
+Could not translate nn to en: Helsinki-NLP/opus-mt-nn-en is not a local folder and is not a valid model identifier listed on 'https://huggingface.co/models'
+If this is a private repository, make sure to pass a token having permission to this repo either by logging in with `huggingface-cli login` or by passing `token=<your_token>`
