@@ -190,4 +190,4 @@ if __name__ == "__main__":
         app = continuous_transcription_app()
         print("Launching Gradio app...")
         # Use share=True if you want to create a temporary public link
-        app.launch(debug=True, share=True)
+        app.launch(debug=True, share=False)
