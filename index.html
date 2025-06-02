@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>WebSocket ASR Client</title>
+    <style>
+        body {
+            font-family: sans-serif;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin-top: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        #controls button {
+            padding: 10px 15px;
+            margin: 5px;
+            font-size: 16px;
+            cursor: pointer;
+            border: none;
+            border-radius: 5px;
+            background-color: #007bff;
+            color: white;
+        }
+        #controls button:disabled {
+            background-color: #cccccc;
+            cursor: not-allowed;
+        }
+        #status {
+            margin-top: 15px;
+            font-style: italic;
+            color: #555;
+        }
+        #transcription {
+            margin-top: 20px;
+            padding: 15px;
+            width: 80%;
+            max-width: 600px;
+            min-height: 100px;
+            border: 1px solid #ccc;
+            background-color: white;
+            border-radius: 5px;
+            white-space: pre-wrap; /* Allows line breaks */
+            overflow-y: auto;
+        }
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+    <h1>Real-time ASR via WebSocket</h1>
+
+    <div id="controls">
+        <button id="startButton">Start Recording</button>
+        <button id="stopButton" disabled>Stop Recording</button>
+    </div>
+
+    <div id="status">Not connected</div>
+    <pre id="transcription">Transcription will appear here...</pre>
+
+    <script>
+        const startButton = document.getElementById('startButton');
+        const stopButton = document.getElementById('stopButton');
+        const statusDiv = document.getElementById('status');
+        const transcriptionDiv = document.getElementById('transcription');
+
+        // Configuration
+        const WEBSOCKET_URL = "ws://183.47.51.98:8765"; // Your server IP and Port
+        const TIMESLICE_MS = 1000; // Send audio data every 1 second (1000ms)
+        // Attempt to use WebM with Opus, which your server handles well.
+        // Browsers might have varying levels of support for specific codecs.
+        const MIME_TYPE_OPTIONS = [
+            "audio/webm; codecs=opus",
+            "audio/ogg; codecs=opus", // Fallback if WebM/Opus not available
+            "audio/webm", // Generic WebM
+            "audio/ogg"   // Generic Ogg
+        ];
+
+        let websocket;
+        let mediaRecorder;
+        let audioChunks = [];
+        let stream; // To store the MediaStream object
+
+        function getSupportedMimeType() {
+            for (const mimeType of MIME_TYPE_OPTIONS) {
+                if (MediaRecorder.isTypeSupported(mimeType)) {
+                    console.log(`Using MIME type: ${mimeType}`);
+                    return mimeType;
+                }
+            }
+            console.warn("None of the preferred MIME types are supported. MediaRecorder might use a default or fail.");
+            return ""; // Let MediaRecorder use its default if none are explicitly supported
+        }
+
+        async function startRecording() {
+            startButton.disabled = true;
+            stopButton.disabled = false;
+            transcriptionDiv.textContent = "Starting...";
+            statusDiv.textContent = "Attempting to connect...";
+
+            try {
+                stream = await navigator.mediaDevices.getUserMedia({ audio: true, video: false });
+            } catch (err) {
+                console.error("Error getting user media:", err);
+                statusDiv.textContent = `Error accessing microphone: ${err.message}`;
+                statusDiv.classList.add("error");
+                startButton.disabled = false;
+                stopButton.disabled = true;
+                return;
+            }
+
+            const mimeType = getSupportedMimeType();
+
+            try {
+                mediaRecorder = new MediaRecorder(stream, { mimeType: mimeType });
+            } catch (e) {
+                 console.error("Error creating MediaRecorder:", e);
+                 statusDiv.textContent = `Error creating MediaRecorder: ${e.message}. Try a different browser or check MIME type support.`;
+                 statusDiv.classList.add("error");
+                 startButton.disabled = false;
+                 stopButton.disabled = true;
+                 if (stream) stream.getTracks().forEach(track => track.stop()); // Release microphone
+                 return;
+            }
+
+
+            websocket = new WebSocket(WEBSOCKET_URL);
+
+            websocket.onopen = () => {
+                statusDiv.textContent = "Connected. Recording...";
+                statusDiv.classList.remove("error");
+                transcriptionDiv.textContent = ""; // Clear previous transcriptions
+
+                mediaRecorder.ondataavailable = (event) => {
+                    if (event.data.size > 0 && websocket.readyState === WebSocket.OPEN) {
+                        websocket.send(event.data);
+                        // console.log(`Sent audio data chunk, size: ${event.data.size}`);
+                    }
+                };
+
+                mediaRecorder.onstop = () => {
+                    // Send EOS (End Of Stream) message
+                    if (websocket.readyState === WebSocket.OPEN) {
+                        websocket.send("EOS");
+                        console.log("Sent EOS to server.");
+                    }
+                    // Do not close WebSocket here immediately, wait for final transcriptions.
+                    // The server should close the connection after processing EOS.
+                };
+
+                mediaRecorder.start(TIMESLICE_MS); // Collect data in chunks and fire 'ondataavailable'
+            };
+
+            websocket.onmessage = (event) => {
+                try {
+                    const message = JSON.parse(event.data);
+                    console.log("Received from server:", message);
+
+                    if (message.transcription) {
+                        transcriptionDiv.textContent += message.transcription + " ";
+                    } else if (message.transcription_eos) {
+                        transcriptionDiv.textContent += message.transcription_eos + " (EOS) ";
+                        statusDiv.textContent = "EOS processed by server. You can start again.";
+                        // Consider enabling startButton here if you want immediate restart capability
+                    } else if (message.error) {
+                        statusDiv.textContent = `Server Error: ${message.error}`;
+                        statusDiv.classList.add("error");
+                    } else if (message.status) {
+                         statusDiv.textContent = `Server Status: ${message.status}`;
+                         if (message.status.includes("EOS processed")) {
+                             // Connection might be closed by server soon, or allow user to restart
+                         }
+                    }
+                } catch (e) {
+                    console.error("Error parsing server message or non-JSON message:", event.data, e);
+                    transcriptionDiv.textContent += `[RAW] ${event.data}\n`;
+                }
+                // Scroll to bottom of transcription
+                transcriptionDiv.scrollTop = transcriptionDiv.scrollHeight;
+            };
+
+            websocket.onerror = (error) => {
+                console.error("WebSocket Error:", error);
+                statusDiv.textContent = "WebSocket error. Check console.";
+                statusDiv.classList.add("error");
+                cleanup();
+            };
+
+            websocket.onclose = (event) => {
+                console.log("WebSocket closed:", event.reason, `Code: ${event.code}`);
+                if (!event.wasClean) {
+                    statusDiv.textContent = `WebSocket closed unexpectedly: ${event.reason || 'No reason provided'}. Code: ${event.code}`;
+                    statusDiv.classList.add("error");
+                } else {
+                     statusDiv.textContent = "WebSocket connection closed.";
+                }
+                cleanup();
+            };
+
+        }
+
+        function stopRecording() {
+            if (mediaRecorder && mediaRecorder.state === "recording") {
+                mediaRecorder.stop(); // This will trigger ondataavailable one last time (maybe empty) and then onstop
+                console.log("MediaRecorder stopped by user.");
+            }
+            // Don't disable stopButton immediately, allow onstop to send EOS
+            // stopButton.disabled = true; // Re-enable start after close or EOS ack
+            statusDiv.textContent = "Stopping recording, sending EOS...";
+        }
+
+        function cleanup() {
+            if (mediaRecorder && mediaRecorder.state !== "inactive") {
+                mediaRecorder.stop();
+            }
+            if (stream) {
+                stream.getTracks().forEach(track => track.stop()); // Release microphone
+                stream = null;
+            }
+            if (websocket && websocket.readyState !== WebSocket.CLOSED) {
+                // websocket.close(); // Server should close after EOS, or it will close on error
+            }
+            startButton.disabled = false;
+            stopButton.disabled = true;
+            mediaRecorder = null;
+            websocket = null;
+        }
+
+        startButton.addEventListener('click', startRecording);
+        stopButton.addEventListener('click', stopRecording);
+
+        // Optional: Warn user if they try to leave the page while recording
+        window.addEventListener('beforeunload', (event) => {
+            if (mediaRecorder && mediaRecorder.state === "recording") {
+                // Standard way to trigger a confirmation dialog
+                event.preventDefault();
+                event.returnValue = ''; // Required for Chrome
+            }
+        });
+
+    </script>
+</body>
+</html>
